@@ -1,11 +1,16 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.DeviceId.DriveMotor.ShooterSubsystem;
 import frc.robot.commands.DriveCmd;
+import frc.robot.commands.HopperCmd;
+import frc.robot.commands.IntakeArmCmd;
 import frc.robot.commands.IntakeCmd;
+import frc.robot.commands.ShooterCmd;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.HopperSubsystem;
+import frc.robot.subsystems.IntakeArmSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 public class RobotContainer {
     private final GamepadJoystick driver = new GamepadJoystick(GamepadJoystick.DRIVER_PORT);
@@ -14,11 +19,20 @@ public class RobotContainer {
     private final DriveCmd driveJoystickCmd = new DriveCmd(driveMotorSubsystem, driver);
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
     private final IntakeCmd intakeCmd = new IntakeCmd(intakeSubsystem, controller);
+    private final IntakeArmSubsystem intakeArmSubsystem = new IntakeArmSubsystem();
+    private final IntakeArmCmd intakeArmCmd = new IntakeArmCmd(intakeArmSubsystem, controller);
     private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+    private final ShooterCmd shooterCmd = new ShooterCmd(shooterSubsystem, controller);
+    private final HopperSubsystem hopperSubsystem = new HopperSubsystem();
+    private final HopperCmd hopperCmd = new HopperCmd(hopperSubsystem, controller);
 
     public RobotContainer() {
         this.driveMotorSubsystem.setDefaultCommand(this.driveJoystickCmd);
+        this.shooterSubsystem.setDefaultCommand(this.shooterCmd);
         this.intakeSubsystem.setDefaultCommand(this.intakeCmd);
+        this.intakeArmSubsystem.setDefaultCommand(this.intakeArmCmd);
+        this.hopperSubsystem.setDefaultCommand(this.hopperCmd);
+        
     }
 
     public Command getAutonomousCommand() {
