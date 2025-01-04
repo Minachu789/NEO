@@ -1,3 +1,4 @@
+
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
@@ -9,9 +10,9 @@ public class DriveModule {
 
     public DriveModule(int port, boolean reverse) {
         this.motor = new CANSparkMax(port, MotorType.kBrushless);
-        this.motor.setInverted(reverse);
         this.motor.setIdleMode(IdleMode.kBrake);
-
+        this.motor.setSmartCurrentLimit(30);
+        this.motor.setInverted(reverse);
     }
 
     public void setDesiredState(double speed) {
