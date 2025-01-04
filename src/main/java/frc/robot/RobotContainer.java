@@ -14,17 +14,19 @@ import frc.robot.subsystems.ShooterSubsystem;
 
 public class RobotContainer {
     private final GamepadJoystick driver = new GamepadJoystick(GamepadJoystick.DRIVER_PORT);
-    private final DriveSubsystem driveMotorSubsystem = new DriveSubsystem();
     private final GamepadJoystick controller = new GamepadJoystick(GamepadJoystick.CONTROLLER_PORT);
-    private final DriveCmd driveJoystickCmd = new DriveCmd(driveMotorSubsystem, driver);
+
+    private final DriveSubsystem driveMotorSubsystem = new DriveSubsystem();
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-    private final IntakeCmd intakeCmd = new IntakeCmd(intakeSubsystem, controller);
-    private final IntakeArmSubsystem intakeArmSubsystem = new IntakeArmSubsystem();
-    private final IntakeArmCmd intakeArmCmd = new IntakeArmCmd(intakeArmSubsystem, controller);
-    private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-    private final ShooterCmd shooterCmd = new ShooterCmd(shooterSubsystem, controller);
     private final HopperSubsystem hopperSubsystem = new HopperSubsystem();
+    private final IntakeArmSubsystem intakeArmSubsystem = new IntakeArmSubsystem();
+    private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+
+    private final DriveCmd driveJoystickCmd = new DriveCmd(driveMotorSubsystem, driver);
+    private final ShooterCmd shooterCmd = new ShooterCmd(shooterSubsystem, controller);
+    private final IntakeArmCmd intakeArmCmd = new IntakeArmCmd(intakeArmSubsystem, controller);
     private final HopperCmd hopperCmd = new HopperCmd(hopperSubsystem, controller);
+    private final IntakeCmd intakeCmd = new IntakeCmd(intakeSubsystem, controller);
 
     public RobotContainer() {
         this.driveMotorSubsystem.setDefaultCommand(this.driveJoystickCmd);
@@ -32,7 +34,7 @@ public class RobotContainer {
         this.intakeSubsystem.setDefaultCommand(this.intakeCmd);
         this.intakeArmSubsystem.setDefaultCommand(this.intakeArmCmd);
         this.hopperSubsystem.setDefaultCommand(this.hopperCmd);
-        
+
     }
 
     public Command getAutonomousCommand() {
