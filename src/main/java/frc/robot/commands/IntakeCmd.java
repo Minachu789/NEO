@@ -1,6 +1,8 @@
+
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -20,14 +22,12 @@ public class IntakeCmd extends Command {
 
 	@Override
 	public void execute() {
-		if (this.controller.getAButton()){
-			this.intakeSubsystem.move(0.3);
-		
-		}
-		else {
+		if (this.controller.getAButton()) {
+			this.intakeSubsystem.move(Constants.Controll.INTAKE_MAX_SPEED);
+		} else {
 			this.intakeSubsystem.stop();
 		}
-	
+
 	}
 
 	@Override
